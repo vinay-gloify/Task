@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import FriendsCard from "./components/FriendsCard";
 import Name from "./components/Name";
 import Ref from './components/Ref';
@@ -20,6 +20,13 @@ function App() {
     console.log(name);
   }
 
+  const Person = {
+    name: 'Bruce',
+    location: 'Gowtham'
+  }
+
+  const memoizedPerson = useMemo(() => Person, [])
+
   return (
     <>
       <Useeffect />
@@ -32,6 +39,7 @@ function App() {
       <FriendsCard name='Doe' location="Australia" isFriend={false} />
       <FriendsCard location="Australia" isFriend={true} />
       <FriendsCard isFriend={true} />
+      <FriendsCard name={memoizedPerson.name} location={memoizedPerson.location} />
       <Name handleName={handleName} />
     </>
   );
